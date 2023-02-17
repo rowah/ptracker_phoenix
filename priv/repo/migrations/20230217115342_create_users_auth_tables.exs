@@ -5,6 +5,8 @@ defmodule Ptracker.Repo.Migrations.CreateUsersAuthTables do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
     create table(:users) do
+      add :first_name, :string # add first name column
+      add :last_name, :string # add last name column
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime

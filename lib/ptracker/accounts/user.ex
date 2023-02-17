@@ -3,6 +3,8 @@ defmodule Ptracker.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :first_name, :string # add first name field
+    field :last_name, :string # add last name field
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
@@ -30,14 +32,14 @@ defmodule Ptracker.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:first_name, :last_name, :email, :password])
     |> validate_email()
     |> validate_password(opts)
   end
 
   defp validate_email(changeset) do
     changeset
-    |> validate_required([:email])
+    |> validate_required([:first_name, :last_name, :email])
     |> validate_format(:email, ~r/^[^\s]+@[^\s]+$/, message: "must have the @ sign and no spaces")
     |> validate_length(:email, max: 160)
     |> unsafe_validate_unique(:email, Ptracker.Repo)
