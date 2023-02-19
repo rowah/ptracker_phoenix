@@ -20,3 +20,9 @@
     -->
   </article>
 </section>
+
+<%= if @current_user do %>
+<span><%= link "Go to Products", to: Routes.product_path(@conn, :index) %></span>
+<% else %>
+  <span></span>
+<% end %>
