@@ -5,7 +5,7 @@ defmodule Ptracker.Store.Product do
   schema "products" do
     field :description, :string
     field :expiry_date, :date
-    field :image, :string
+    field :image, :binary
     field :manufacture_date, :date
     field :name, :string
 
